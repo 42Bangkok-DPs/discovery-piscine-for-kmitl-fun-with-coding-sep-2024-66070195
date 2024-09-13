@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="calculator">
+            <input type="text" id="leftOperand" placeholder="Left Operand" min="0" required>
+
+            <select id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
+            </select>
+
+            <input type="text" id="rightOperand" placeholder="Right Operand" min="0" required>
+
+            <input type="button" id="btn" value="Try me!" onclick="calculator()">
+        </div>
+    </body>
+    <style>
+        body{
+            text-align: center;
+            background-color: gray;
+        }
+
+        .calculator{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #leftOperand{
+            width: 200px;
+            height: 22px;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+
+        #rightOperand{
+            width: 200px;
+            height: 22px;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+
+        #operator{
+            height: 22px;
+            border-radius: 5px;
+            border: 0px;
+            box-shadow: 0px 0px 5px black;
+        }
+
+        #btn{
+            font-family: monospace;
+            width: 100px;
+            height: 30px;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            border-color: gray;
+        }
+
+    </style>
+    <script>
+        function calculator(){
+            let leftOperand = parseInt(document.getElementById('leftOperand').value);
+            let rightOperand = parseInt(document.getElementById('rightOperand').value);
+            let operator = document.getElementById('operator').value;
+
+            if (isNaN(leftOperand) || isNaN(rightOperand) || leftOperand < 0 || rightOperand < 0) {
+                alert('Error :(');
+                console.log('Error :(');
+                return;
+            }
+
+            if ((operator === '/' || operator === '%') && rightOperand === 0) {
+                alert("It's over 9000!");
+                console.log("It's over 9000!");
+                return;
+            }
+
+            let result;
+            switch (operator){
+                case '+':
+                    result = leftOperand + rightOperand;
+                    break;
+                case '-':
+                    result = leftOperand - rightOperand;
+                    break;
+                case '*':
+                    result = leftOperand * rightOperand;
+                    break;
+                case '/':
+                    result = leftOperand / rightOperand;
+                    break;
+                case '%':
+                    result = leftOperand % rightOperand;
+                    break;
+            }
+
+            alert('Result: ' + result);
+            console.log('Result: ' + result);
+        }
+
+        setInterval(function() {alert('Please, use me...');}, 30000);
+
+    </script>
+</html>
