@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="calculator">
+            <input type="text" id="leftOperand" placeholder="Left Operand" >
+
+            <select id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
+            </select>
+
+            <input type="text" id="rightOperand" placeholder="Right Operand">
+
+            <input type="button" id="btn" value="Try me!" onclick="calculator()">
+        </div>
+    </body>
+    <style>
+        body{
+            text-align: center;
+            background-color: gray;
+        }
+
+        .calculator{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #leftOperand{
+            width: 200px;
+            height: 22px;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+
+        #rightOperand{
+            width: 200px;
+            height: 22px;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+
+        #operator{
+            height: 22px;
+            border-radius: 5px;
+            border: 0px;
+            box-shadow: 0px 0px 5px black;
+        }
+
+        #btn{
+            font-family: monospace;
+            width: 100px;
+            height: 30px;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            border-color: gray;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function isInteger(value) {
+            return /^\d+$/.test(value);
+        }
+
+        function calculator() {
+            let leftOperand = $('#leftOperand').val();
+            let rightOperand = $('#rightOperand').val();
+            let operator = $('#operator').val();
+
+            if (!isInteger(leftOperand) || !isInteger(rightOperand)) {
+                alert('Error :(');
+                console.log('Error :(');
+                return;
+            }
+
+            let leftNum = parseInt(leftOperand);
+            let rightNum = parseInt(rightOperand);
+
+            if (isNaN(leftNum) || isNaN(rightNum) || leftNum < 0 || rightNum < 0) {
+                alert('Error :(');
+                console.log('Error :(');
+                return;
+            }
+
+            if ((operator === '/' || operator === '%') && rightNum === 0) {
+                alert("It's over 9000!");
+                console.log("It's over 9000!");
+                return;
+            }
+
+            let result;
+            switch (operator) {
+                case '+':
+                    result = leftNum + rightNum;
+                    break;
+                case '-':
+                    result = leftNum - rightNum;
+                    break;
+                case '*':
+                    result = leftNum * rightNum;
+                    break;
+                case '/':
+                    result = leftNum / rightNum;
+                    break;
+                case '%':
+                    result = leftNum % rightNum;
+                    break;
+            }
+
+            alert('Result: ' + result);
+            console.log('Result: ' + result);
+        }
+
+        $(document).ready(function() {
+            $('#btn').click(calculator);
+
+            setInterval(function() {
+                alert('Please, use me...');
+            }, 30000);
+        });
+    </script>
+</html>

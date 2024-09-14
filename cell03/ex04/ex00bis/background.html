@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <button id="btn">Click me!</button>
+    </body>
+    <style>
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        body {
+            transition: background-color 0.5s ease;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function getRandomColor() {
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        $(document).ready(function() {
+            $('#btn').click(function() {
+                $('body').css('background-color', getRandomColor());
+            });
+        });
+    </script>
+</html>
